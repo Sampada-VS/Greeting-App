@@ -1,5 +1,6 @@
 package com.blz.greetingapp.controller;
 
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +19,18 @@ public class GreetingController {
 	private final AtomicLong counter=new AtomicLong();
 		
 	@GetMapping("/greeting")
-	public Greeting greeting(@RequestParam(value="name",defaultValue="World") String name) {
-		return new Greeting(counter.incrementAndGet(),
-							String.format(template, name));
+	public Greeting greeting(@RequestParam(value="name",required = false) String name,@RequestParam(value="lname",required = false) String lname) {
+		if(name==null && lname==null) {
+			String msg="World";
+			return new Greeting(counter.incrementAndGet(),String.format(template, msg));
+		}
+		if(name==null) {
+			return new Greeting(counter.incrementAndGet(),String.format(template, lname));
+		}
+		if(lname==null) {
+			return new Greeting(counter.incrementAndGet(),String.format(template, name));
+		}
+		return null;
 	}
 	
 	@PostMapping("/greeting")
