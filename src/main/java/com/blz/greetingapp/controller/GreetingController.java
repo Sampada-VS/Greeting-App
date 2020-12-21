@@ -1,5 +1,7 @@
 package com.blz.greetingapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +29,11 @@ public class GreetingController {
 	@GetMapping("/get/{id}")
 	public Greeting getGreeting(@PathVariable(name = "id") long id) {
 		return greetingService.getGreetingById(id);
+	}
+
+	@GetMapping("/get/list")
+	public List<Greeting> listGreeting() {
+		return greetingService.getGreetingList();
 	}
 
 }
