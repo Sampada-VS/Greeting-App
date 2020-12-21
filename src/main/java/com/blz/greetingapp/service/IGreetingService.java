@@ -6,4 +6,6 @@ import com.blz.greetingapp.model.User;
 public interface IGreetingService {
 
 	public Greeting addGreeting(User user);
+
+	public Greeting getGreetingById(long id);
 }
