@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +36,16 @@ public class GreetingController {
 	@GetMapping("/get/list")
 	public List<Greeting> listGreeting() {
 		return greetingService.getGreetingList();
+	}
+
+	@PutMapping("/edit/{id}")
+	public Greeting editGreeting(@RequestBody User user, @PathVariable(name = "id") long id) {
+		Greeting greet = greetingService.getGreetingById(id);
+		if (greet != null) {
+			user.setFirstName(user.getName());
+			return greetingService.updateGreeting(user);
+		}
+		return null;
 	}
 
 }

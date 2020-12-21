@@ -12,4 +12,7 @@ public interface IGreetingService {
 	public Greeting getGreetingById(long id);
 
 	public List<Greeting> getGreetingList();
+
+	public Greeting updateGreeting(User user);
+
 }
