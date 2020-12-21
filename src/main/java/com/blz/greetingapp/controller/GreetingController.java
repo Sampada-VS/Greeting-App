@@ -43,7 +43,7 @@ public class GreetingController {
 		Greeting greet = greetingService.getGreetingById(id);
 		if (greet != null) {
 			user.setFirstName(user.getName());
-			return greetingService.updateGreeting(user);
+			return greetingService.updateGreeting(user,id);
 		}
 		return null;
 	}

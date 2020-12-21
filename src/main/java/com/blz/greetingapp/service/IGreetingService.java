@@ -13,6 +13,6 @@ public interface IGreetingService {
 
 	public List<Greeting> getGreetingList();
 
-	public Greeting updateGreeting(User user);
+	public Greeting updateGreeting(User user, long id);
 
 }
